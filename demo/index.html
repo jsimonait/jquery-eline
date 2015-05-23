@@ -1,0 +1,149 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<style type="text/css">
+		div.line{
+			transform-origin: 0 100%;
+			height: 1px; 
+			background: red;
+			display:none;
+		}
+    div.line-bold{
+      transform-origin: 0 100%;
+      height: 3px; 
+      background: blue; 
+      display:none;
+    }
+    .container{
+      margin-top: 50px; 
+    }
+    .row{
+      margin-top: 100px; 
+    }
+	</style>
+</head>
+<body>
+
+
+  <div class="container">
+
+
+      
+      <div class="row">
+          <div class="col-md-3">
+            <span class="badge">1</span>
+            <a href="#">
+              
+              <img class="img-1 img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+          </div>
+
+          <div class="col-md-3 col-md-offset-6">
+            <span class="badge">2</span>
+            <a href="#">
+              <img class="img-2 img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-3">
+            <span class="badge">3</span>
+            <a href="#">
+              
+              <img class="img-3 img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+          </div>
+
+          <div class="col-md-3 col-md-offset-6">
+            <span class="badge">4</span>
+            <a href="#">
+              <img class="img-4 img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+          </div>
+      </div>
+
+
+  </div>
+
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../src/jquery-eline.js"></script>
+  <script type="text/javascript">
+    $(function(){
+
+      // 1 -> 2
+      $('.img-1').hover(
+        function(){ 
+          $.eline($(this), $('.img-2'), 'show'); 
+        },
+        function(){ 
+          $.eline($(this), $('.img-2'), 'hide'); 
+        });
+
+      // 1 -> 4
+      $('.img-1').hover(
+        function(){ 
+          $.eline($(this), $('.img-4'), 'show',{
+            aPlacement: 'right bottom',
+            bPlacement: 'left top',
+          }); 
+        },
+        function(){ 
+          $.eline($(this), $('.img-4'), 'hide'); 
+        });
+
+      // 2 -> 1
+      $('.img-2').hover(
+        function(){ 
+          $.eline($(this), $('.img-1'), 'show', {
+            aPlacement: 'left center',
+            bPlacement: 'right center',
+          }); 
+        },
+        function(){ 
+          $.eline($(this), $('.img-1'), 'hide'); 
+        });
+
+      // 3 -> 4
+      $('.img-3').hover(
+        function(){ 
+          $.eline($(this), $('.img-4'), 'show', {
+            aPlacement: 'center top',
+            bPlacement: 'center bottom',
+            show: function ($line) {
+                console.log('Show line');
+                $line.show();
+            },
+          }); 
+        },
+        function(){ 
+          $.eline($(this), $('.img-4'), 'hide', {
+            hide: function ($line) {
+                console.log('Hide line');
+                $line.hide();
+            }
+          }); 
+        });
+
+      // 4 -> 2
+      $('.img-4').hover(
+        function(){ 
+          $.eline($(this), $('.img-2'), 'show', {
+            cssClass: 'line-bold',
+            aPlacement: 'center top',
+            bPlacement: 'center bottom',
+          }); 
+        },
+        function(){ 
+          $.eline($(this), $('.img-2'), 'hide'); 
+        });
+
+    });
+
+    
+  </script>
+
+</body>
+</html>
